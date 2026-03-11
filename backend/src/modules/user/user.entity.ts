@@ -20,7 +20,7 @@ export class User {
   email!: string;
 
   @Column({ nullable: true })
-  password!: string;
+  password?: string;
 
   @Column({ nullable: true })
   googleId!: string;
