@@ -7,7 +7,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "build": "tsc"
+    "build": "tsc",
+    "seed": "ts-node-dev src/database/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "pg": "^8.20.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.6",
