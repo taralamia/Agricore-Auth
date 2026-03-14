@@ -1,5 +1,9 @@
 import passport from "passport";
-import { Strategy as GoogleStrategy, Profile, VerifyCallback } from "passport-google-oauth20";
+import {
+  Strategy as GoogleStrategy,
+  Profile,
+  VerifyCallback,
+} from "passport-google-oauth20";
 import { AppDataSource } from "../database/data-source";
 import { User } from "../modules/user/user.entity";
 import { Role } from "../modules/role/role.entity";
@@ -23,7 +27,10 @@ passport.use(
         const roleRepo = AppDataSource.getRepository(Role);
 
         let user = await userRepo.findOne({
-          where: { googleId: profile.id },
+          where: [
+            { googleId: profile.id },
+            { email: profile.emails?.[0].value },
+          ],
           relations: ["role"],
         });
 
@@ -41,6 +48,10 @@ passport.use(
 
           await userRepo.save(user);
         }
+        if (user && !user.googleId) {
+  user.googleId = profile.id;
+  await userRepo.save(user);
+}
 
         return done(null, user);
       } catch (err) {
