@@ -10,8 +10,12 @@ async function seed() {
   const userRepo = AppDataSource.getRepository(User);
 
   // Check if roles already exist
-  const adminRole = await roleRepo.findOneBy({ name: "ADMIN" }) || roleRepo.create({ name: "ADMIN" });
-  const customerRole = await roleRepo.findOneBy({ name: "CUSTOMER" }) || roleRepo.create({ name: "CUSTOMER" });
+  const adminRole =
+    (await roleRepo.findOneBy({ name: "ADMIN" })) ||
+    roleRepo.create({ name: "ADMIN" });
+  const customerRole =
+    (await roleRepo.findOneBy({ name: "CUSTOMER" })) ||
+    roleRepo.create({ name: "CUSTOMER" });
 
   await roleRepo.save([adminRole, customerRole]);
 

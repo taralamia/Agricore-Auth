@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 export function authorizeRoles(...allowedRoles: number[]) {
   return (req: Request, res: Response, next: NextFunction) => {
-    const user = req.user;
+    const user = req.user as { roleId: number } | undefined;
 
     if (!user) {
       return res.status(401).json({

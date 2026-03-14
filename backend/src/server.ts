@@ -10,7 +10,6 @@ async function startServer() {
     app.listen(env.PORT, () => {
       console.log(`Server running on port ${env.PORT}`);
     });
-
   } catch (error) {
     console.error("Database connection failed", error);
   }
