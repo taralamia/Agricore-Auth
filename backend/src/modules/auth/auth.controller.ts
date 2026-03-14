@@ -4,7 +4,7 @@ import { AuthService } from "./auth.service";
 const authService = new AuthService();
 
 export class AuthController {
-   constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   signup = async (req: Request, res: Response) => {
     try {
@@ -16,7 +16,6 @@ export class AuthController {
         message: "User created",
         user,
       });
-
     } catch (err: any) {
       return res.status(400).json({ message: err.message });
     }
@@ -31,11 +30,15 @@ export class AuthController {
         message: "Login successful",
         ...result,
       });
-
     } catch (err: any) {
       return res.status(401).json({
         message: err.message || "Invalid credentials",
       });
     }
+  };
+  logout = async (req: Request, res: Response) => {
+    return res.status(200).json({
+      message: "Logout successful",
+    });
   };
 }

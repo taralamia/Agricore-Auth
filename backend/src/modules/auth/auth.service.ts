@@ -37,39 +37,38 @@ export class AuthService {
     return user;
   }
   async login(email: string, password: string) {
+    const user = await this.userRepo.findOne({
+      where: { email },
+      relations: ["role"],
+    });
 
-  const user = await this.userRepo.findOne({
-    where: { email },
-    relations: ["role"],
-  });
+    if (!user) {
+      throw new Error("Invalid credentials");
+    }
 
-  if (!user) {
-    throw new Error("Invalid credentials");
+    if (!user.password) {
+      throw new Error("Password login not available for this account");
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      throw new Error("Invalid credentials");
+    }
+
+    const token = generateToken({
+      userId: user.id,
+      roleId: user.roleId,
+    });
+
+    return {
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role.name,
+      },
+    };
   }
-
-  if (!user.password) {
-    throw new Error("Password login not available for this account");
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password);
-
-  if (!isMatch) {
-    throw new Error("Invalid credentials");
-  }
-
-  const token = generateToken({
-    userId: user.id,
-    roleId: user.roleId,
-  });
-
-  return {
-    token,
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role.name,
-    },
-  };
-}
 }

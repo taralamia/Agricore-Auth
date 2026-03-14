@@ -24,10 +24,10 @@ export class User {
 
   @Column({ nullable: true })
   googleId!: string;
-  
+
   @Column()
   roleId!: number;
-  
+
   @ManyToOne(() => Role)
   @JoinColumn({ name: "roleId" })
   role!: Role;
