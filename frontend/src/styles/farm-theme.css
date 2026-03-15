@@ -1,0 +1,231 @@
+/* Farm Theme - Enhanced Card Design */
+:root {
+    --powder-blue: #b0e0e6; /* sky blue */
+    --forest-green: #228B22; /* primary dark green */
+    --light-green: #d4f4dd;  /* light green */
+    --dark-green: #006400;   /* accent dark green */
+    --card-green: #f0fff4;   /* card surface */
+    --white: #ffffff;
+    --gray: #6c757d;
+    --text-dark: #2c3e50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, var(--powder-blue) 0%, var(--light-green) 50%, var(--forest-green) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+}
+
+.card-surface {
+    background: var(--card-green);
+    border-radius: 20px;
+    box-shadow:
+        0 20px 40px rgba(34, 139, 34, 0.15),
+        0 8px 16px rgba(34, 139, 34, 0.1),
+        inset 0 1px 0 var(--white);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 360px;
+    border: 1px solid rgba(34, 139, 34, 0.3);
+    animation: cardAppear 0.6s ease-out;
+    margin: 0.5rem 0;
+}
+
+.farm-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.farm-icon {
+    font-size: 2.75rem;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.farm-header h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--dark-green);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.farm-subtitle {
+    font-size: 0.95rem;
+    color: var(--gray);
+    font-weight: 400;
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.75rem;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: fadeOut 4s 2s forwards;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    border-color: #b1dfbb;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    border-color: #f1b0b7;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.75rem;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    display: block;
+    letter-spacing: -0.2px;
+}
+
+.form-control {
+    border: 2px solid #d4f4dd;
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    background: var(--white);
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: var(--forest-green);
+    box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.15);
+    background: var(--white);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+}
+
+/* Button Styles */
+.btn-farm {
+    background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-green) 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 1.75rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    letter-spacing: -0.2px;
+    margin-top: 0.5rem;
+}
+
+.btn-farm:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 20px rgba(34, 139, 34, 0.35),
+        0 4px 8px rgba(34, 139, 34, 0.2);
+    background: linear-gradient(135deg, var(--dark-green) 0%, #006600 100%);
+}
+
+.btn-farm:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* Search area */
+.filter-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.filter-row label { display: block; }
+.filter-row .search-input {
+    flex: 1 1 0;
+    min-width: 140px;
+}
+.filter-row .btn-filter {
+    flex: 0 0 auto;
+    min-width: 100px;
+    padding: 0.45rem 0.8rem;
+}
+
+/* Footer */
+.farm-footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--gray);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    body {
+        padding: 1.5rem 1rem;
+    }
+
+    .card-surface {
+        padding: 2rem 1.75rem;
+        max-width: 100%;
+        margin: 0.25rem 0;
+    }
+
+    .farm-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .farm-icon {
+        font-size: 2.5rem;
+    }
+
+    .farm-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .filter-row { flex-wrap: wrap; }
+    .filter-row .btn-filter { min-width: 100%; }
+}
+
+/* Animations */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
